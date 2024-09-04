@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Simple Poll App</title>
+</head>
+<script defer>
+    const poll = {
+        question: "What is your favorite programming language?",
+        options: ["Python", "JavaScript", "Java", "C++"],
+        answers: new Array(4).fill(0),
+        registerNewAnswer: function() {
+            const choice = Number(prompt(this.question + "\n" + this.options.join("\n") + "\n(Write option number)"));
+            if (choice >= 0 && choice < this.answers.length) {
+                this.answers[choice]++;
+            } else {
+                alert("Invalid option");
+            }
+            this.displayResults("string");
+        },
+        displayResults: function(type) {
+            if (type === "string") {
+                console.log(`Poll results are ${this.answers.join(", ")}`);
+            } else if (type === "array") {
+                console.log(this.answers);
+            }
+        }
+    }
+
+    const btnAns = document.getElementById("#btnAns");
+    console.log(btnAns);
+</script>
+<body>
+    <button id="btnAns" onclick="poll.registerNewAnswer()">Answer the poll</button>
+</body>
+</html>
